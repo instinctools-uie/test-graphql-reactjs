@@ -6,4 +6,6 @@ npm-debug.log
 
 # Local development
 *.env
+
+# Docker
 data
