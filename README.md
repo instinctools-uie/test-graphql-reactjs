@@ -1,6 +1,6 @@
 # GraphQL test task
 
-## Running Locally
+## Running
 
 Make sure you have [Node.js](http://nodejs.org/) and the [Docker](https://www.docker.com/) and the [Docker Compose](https://docs.docker.com/compose/) installed.
 
