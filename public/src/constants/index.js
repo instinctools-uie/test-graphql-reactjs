@@ -4,3 +4,5 @@ export const PATHS = {
     path: '/'
   }
 };
+
+export const BACKEND_API = 'http://localhost:3001/graphql';

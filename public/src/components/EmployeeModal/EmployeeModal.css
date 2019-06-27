@@ -1,0 +1,16 @@
+.employee-modal {
+  padding-bottom: 1.25em;
+}
+
+.employee-modal-container {
+  margin: 1.25em 1.5em 0;
+}
+
+.employee-modal-apply.ui.button {
+  display: flex;
+  margin: 1.25em 0 0 auto;
+}
+
+.employee-modal-container form > * + * {
+  margin-top: 1em;
+}

@@ -1,7 +1,9 @@
 import React from 'react';
 import { Table, Dropdown, Loader, Icon, Modal, Input, Button } from 'semantic-ui-react';
-import { Query } from 'react-apollo';
-import { getEmployees } from '../../services/gqlRequests';
+import { Query, Mutation } from 'react-apollo';
+
+import { EmployeeModal } from '../../components';
+import { getEmployees, updateEmployee } from '../../services/gqlRequests';
 
 import './Employees.css';
 
@@ -11,17 +13,21 @@ export class Employees extends React.Component {
 
     this.state = {
       showEditMenu: false,
-      employeeEditValue: {
+      employee: {
+        id: '',
         firstName: '',
         lastName: '',
         dateOfBirth: '',
         primaryLanguage: '',
-        languages: []
+        languages: [],
+        languagesOptions: []
       }
     };
 
+    this.handleChange = this.handleChange.bind(this);
     this.handleCloseMenu = this.handleCloseMenu.bind(this);
     this.handleClickEditIcon = this.handleClickEditIcon.bind(this);
+    this.handleSubmitForm = this.handleSubmitForm.bind(this);
   }
 
   handleCloseMenu() {
@@ -33,47 +39,44 @@ export class Employees extends React.Component {
   handleClickEditIcon(employee) {
     this.setState({
       showEditMenu: true,
-      employeeEditValue: {
-        ...this.state.employeeEditValue,
-        ...employee
+      employee: {
+        ...this.state.employee,
+        ...employee,
+        languagesOptions: employee.languages
       }
     });
   }
 
+  handleChange(event) {
+    const { name, value } = event.target;
+
+    this.setState({
+      employee: {
+        ...this.state.employee,
+        [name]: value
+      }
+    });
+  }
+
+  handleSubmitForm(event) {
+    const { employee } = this.state;
+    event.preventDefault();
+    console.log('employee', employee);
+  }
+
   render() {
-    const {
-      employeeEditValue: { firstName, lastName, dateOfBirth, primaryLanguage, languages },
-      showEditMenu
-    } = this.state;
-    const languageOptions = languages.map(language => ({
-      key: language,
-      text: language,
-      value: language
-    }));
+    const { employee, showEditMenu } = this.state;
 
     return (
       <section className="employees-page">
-        <Modal className="employees-page-modal" open={showEditMenu} onClose={this.handleCloseMenu}>
-          <Modal.Header>Edit employee</Modal.Header>
-          <div className="employees-page-modal-container">
-            <Input placeholder="First name" label="First name" defaultValue={firstName} fluid />
-            <Input placeholder="Last name" label="Last name" defaultValue={lastName} fluid />
-            <Input placeholder="Date of birth" label="Date of birth" defaultValue={dateOfBirth} fluid />
-            <Input placeholder="Primary language" label="Primary language" defaultValue={primaryLanguage} fluid />
-            <Dropdown
-              className="employees-page-dropdown-languages"
-              placeholder="Languages"
-              fluid
-              multiple
-              selection
-              defaultValue={languages}
-              options={languageOptions}
-            />
-            <Button className="employees-page-modal-apply" primary>
-              Apply
-            </Button>
-          </div>
-        </Modal>
+        <EmployeeModal
+          showMenu={showEditMenu}
+          headerText="Edit employee"
+          employee={employee}
+          onChangeForm={this.handleChange}
+          onSubmitForm={this.handleSubmitForm}
+          onCloseMenu={this.handleCloseMenu}
+        />
         <Query query={getEmployees}>
           {({ loading, error, data }) => {
             if (loading) return <Loader active />;
