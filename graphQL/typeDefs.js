@@ -7,9 +7,6 @@ const typeDefs = gql`
     id: String,
     firstName: String,
     lastName: String,
-    address: String,
-    email: String,
-    phoneNumber: String,
     dateOfBirth: String,
     primaryLanguage: String,
     languages: [String]
@@ -24,9 +21,6 @@ const typeDefs = gql`
     createEmployee(
       firstName: String!,
       lastName: String!,
-      address: String!,
-      email: String!,
-      phoneNumber: String!,
       dateOfBirth: String!,
       primaryLanguage: String!,
       languages: [String]!
@@ -35,9 +29,6 @@ const typeDefs = gql`
       id: String!,
       firstName: String!,
       lastName: String!,
-      address: String!,
-      email: String!,
-      phoneNumber: String!,
       dateOfBirth: String!,
       primaryLanguage: String!,
       languages: [String]!

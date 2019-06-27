@@ -25,23 +25,23 @@ function getEmployee({ id }) {
 /**
  * Create new employee
  *
- * @param {Object<firstName, lastName, address, email, phoneNumber, dateOfBirth, primaryLanguage, languages>} - Employee data
+ * @param {Object<firstName, lastName, dateOfBirth, primaryLanguage, languages>} - Employee data
  *
  * @return {Object} Promise with result
  */
-function createEmployee({ firstName, lastName, address, email, phoneNumber, dateOfBirth, primaryLanguage, languages }) {
-  return EmployeeModel.create({ firstName, lastName, address, email, phoneNumber, dateOfBirth, primaryLanguage, languages });
+function createEmployee({ firstName, lastName, dateOfBirth, primaryLanguage, languages }) {
+  return EmployeeModel.create({ firstName, lastName, dateOfBirth, primaryLanguage, languages });
 }
 
 /**
  * Update employee by identifier
  *
- * @param {Object<id, firstName, lastName, address, email, phoneNumber, dateOfBirth, primaryLanguage, languages>} - Employee data
+ * @param {Object<id, firstName, lastName, dateOfBirth, primaryLanguage, languages>} - Employee data
  *
  * @return {Object} Promise with result
  */
-function updateEmployee({ id, firstName, lastName, address, email, phoneNumber, dateOfBirth, primaryLanguage, languages }) {
-  return EmployeeModel.findByIdAndUpdate(id, { firstName, lastName, address, email, phoneNumber, dateOfBirth, primaryLanguage, languages }, { new: true });
+function updateEmployee({ id, firstName, lastName, dateOfBirth, primaryLanguage, languages }) {
+  return EmployeeModel.findByIdAndUpdate(id, { firstName, lastName, dateOfBirth, primaryLanguage, languages }, { new: true });
 }
 
 /**
