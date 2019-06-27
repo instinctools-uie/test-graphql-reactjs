@@ -6,3 +6,4 @@ npm-debug.log
 
 # Local development
 *.env
+data

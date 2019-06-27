@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1561627539293" clover="3.2.0">
+  <project timestamp="1561627539293" name="All files">
+    <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3" elements="10" coveredelements="6" complexity="0" loc="6" ncloc="6" packages="4" files="5" classes="5"/>
+    <package name="containers.App">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="App.js" path="/home/INSTINCTOOLS/oxy/vadim/trial-task/src/containers/App/App.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="containers.NotFoundPage">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="NotFoundPage.js" path="/home/INSTINCTOOLS/oxy/vadim/trial-task/src/containers/NotFoundPage/NotFoundPage.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="7" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="containers.Overview">
+      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+      <file name="Overview.js" path="/home/INSTINCTOOLS/oxy/vadim/trial-task/src/containers/Overview/Overview.js">
+        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="9" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="services">
+      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="history.js" path="/home/INSTINCTOOLS/oxy/vadim/trial-task/src/services/history.js">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+      </file>
+      <file name="routes.js" path="/home/INSTINCTOOLS/oxy/vadim/trial-task/src/services/routes.js">
+        <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+        <line num="6" count="0" type="stmt"/>
+        <line num="7" count="0" type="stmt"/>
+      </file>
+    </package>
+  </project>
+</coverage>

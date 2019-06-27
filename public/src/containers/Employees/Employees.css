@@ -1,0 +1,30 @@
+.employees-page {
+  padding: 1.5em 2em 2em;
+}
+
+.icon.edit,
+.icon.remove {
+  cursor: pointer;
+}
+
+.icon:hover {
+  transform: scale(1.2);
+  will-change: transform;
+}
+
+.employees-page-modal {
+  padding-bottom: 1.25em;
+}
+
+.employees-page-modal-container {
+  margin: 1.25em 1.5em 0;
+}
+
+.employees-page-modal-apply.ui.button {
+  display: flex;
+  margin: 1.25em 0 0 auto;
+}
+
+.employees-page-modal-container * + * {
+  margin-top: 1em;
+}

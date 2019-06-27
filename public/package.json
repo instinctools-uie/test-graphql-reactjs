@@ -1,0 +1,59 @@
+{
+  "name": "trial-task",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --no-watchAll --no-cache --env=jsdom --coverage src/setupTests.js src/**/*",
+    "format": "./node_modules/.bin/prettier --single-quote --write 'src/**/*.{js,jsx,json,css}'",
+    "eject": "react-scripts eject"
+  },
+  "dependencies": {
+    "apollo-boost": "^0.4.3",
+    "graphql": "^14.4.0",
+    "history": "4.9.0",
+    "prop-types": "15.7.2",
+    "react": "16.8.6",
+    "react-apollo": "^2.5.8",
+    "react-dom": "16.8.6",
+    "react-router-dom": "5.0.1",
+    "react-scripts": "3.0.1",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.2"
+  },
+  "devDependencies": {
+    "enzyme": "3.10.0",
+    "enzyme-adapter-react-16": "1.14.0",
+    "pre-commit": "1.2.2",
+    "prettier": "1.18.2"
+  },
+  "pre-commit": [
+    "format",
+    "test"
+  ],
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/**/index.js",
+      "!src/**/setupTests.js",
+      "!src/**/serviceWorker.js",
+      "!<rootDir>/node_modules/"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
