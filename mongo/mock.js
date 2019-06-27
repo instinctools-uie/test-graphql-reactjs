@@ -6,9 +6,6 @@ function createMockData(Model) {
     {
       firstName: 'firstName',
       lastName: 'lastName',
-      address: 'address',
-      email: 'email',
-      phoneNumber: 'phoneNumber',
       dateOfBirth: 'dateOfBirth',
       primaryLanguage: 'primaryLanguage',
       languages: ['languages']
@@ -16,9 +13,6 @@ function createMockData(Model) {
     {
       firstName: 'firstName2',
       lastName: 'lastName2',
-      address: 'address2',
-      email: 'email2',
-      phoneNumber: 'phoneNumber2',
       dateOfBirth: 'dateOfBirth2',
       primaryLanguage: 'primaryLanguage2',
       languages: ['languages2']

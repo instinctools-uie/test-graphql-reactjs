@@ -9,9 +9,6 @@ const ModelSchema = new Schema(
   {
     firstName: String,
     lastName: String,
-    address: String,
-    email: String,
-    phoneNumber: String,
     dateOfBirth: String,
     primaryLanguage: String,
     languages: Array
