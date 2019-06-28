@@ -94,7 +94,7 @@ export class EmployeeModal extends React.PureComponent {
               Apply
             </Button>
           </form>
-          {error && <p>{error}</p>}
+          {error && <p className="employee-modal-error">{error}</p>}
         </div>
       </Modal>
     );

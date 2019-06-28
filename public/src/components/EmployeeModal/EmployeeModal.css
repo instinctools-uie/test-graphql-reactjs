@@ -14,3 +14,25 @@
 .employee-modal-container form > * + * {
   margin-top: 1em;
 }
+
+.employee-modal-error {
+  font-size: 1.25em;
+  color: darkred;
+  text-align: center;
+}
+
+.employee-modal.ui .ui.loader {
+  display: none;
+}
+
+.employee-modal.ui .ui.loader.active {
+  display: block;
+}
+
+.employee-modal.ui .ui.loader.active::before {
+  border-color: rgba(0,0,0,.85);
+}
+
+.employee-modal.ui .ui.loader.active::after {
+  border-color: #e8e8e8 transparent transparent;
+}
