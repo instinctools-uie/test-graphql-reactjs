@@ -11,7 +11,7 @@ describe('<NotFoundPage /> Component', () => {
         - 1 <h1> with correct text;`, () => {
     const component = renderComponent();
 
-    expect(component.find('h1')).toHaveLength(1);
-    expect(component.find('h1').text()).toBe('Page not found');
+    expect(component.find('Header')).toHaveLength(1);
+    expect(component.find('Header').props()).toEqual({ as: 'h1', children: 'Page not found' });
   });
 });

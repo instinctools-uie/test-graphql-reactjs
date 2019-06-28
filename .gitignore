@@ -3,6 +3,7 @@ node_modules
 npm-debug.log
 
 .idea
+coverage
 
 # Local development
 *.env

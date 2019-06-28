@@ -220,7 +220,9 @@ export class Employees extends React.Component {
 
     return (
       <div className="employees-page">
-        <Button className="employees-page-create-button" onClick={this.onClickCreateButton}>Create</Button>
+        <Button className="employees-page-create-button" onClick={this.onClickCreateButton}>
+          Create
+        </Button>
         <EmployeeModal
           showModal={showModal}
           headerText="Edit employee"
@@ -231,7 +233,13 @@ export class Employees extends React.Component {
           onSubmitForm={isCreateEmployee ? this.handleCreateEmployee : this.handleEditEmployee}
           onCloseModal={this.handleCloseModal}
         />
-        <Confirm open={showConfirmModal} header={'Are you sure?'} content={error} onCancel={this.handleCloseConfirmModal} onConfirm={this.handleConfirmModal} />
+        <Confirm
+          open={showConfirmModal}
+          header={'Are you sure?'}
+          content={error}
+          onCancel={this.handleCloseConfirmModal}
+          onConfirm={this.handleConfirmModal}
+        />
         <Query query={getEmployees}>
           {({ loading, error, data }) => {
             if (loading) return <Loader active />;

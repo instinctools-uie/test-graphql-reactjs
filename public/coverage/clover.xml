@@ -1,35 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1561627539293" clover="3.2.0">
-  <project timestamp="1561627539293" name="All files">
-    <metrics statements="6" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="3" elements="10" coveredelements="6" complexity="0" loc="6" ncloc="6" packages="4" files="5" classes="5"/>
+<coverage generated="1561710992280" clover="3.2.0">
+  <project timestamp="1561710992281" name="All files">
+    <metrics statements="66" coveredstatements="8" conditionals="8" coveredconditionals="1" methods="32" coveredmethods="5" elements="106" coveredelements="14" complexity="0" loc="66" ncloc="66" packages="6" files="8" classes="8"/>
+    <package name="components.EmployeeModal">
+      <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="3"/>
+      <file name="EmployeeModal.js" path="/home/INSTINCTOOLS/oxy/vadim/sdsgfs/graphql-test-task/public/src/components/EmployeeModal/EmployeeModal.js">
+        <metrics statements="7" coveredstatements="6" conditionals="2" coveredconditionals="1" methods="4" coveredmethods="3"/>
+        <line num="8" count="1" type="stmt"/>
+        <line num="10" count="1" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="104" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="constants">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <file name="mockData.js" path="/home/INSTINCTOOLS/oxy/vadim/sdsgfs/graphql-test-task/public/src/constants/mockData.js">
+        <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="1" count="0" type="stmt"/>
+      </file>
+    </package>
     <package name="containers.App">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="App.js" path="/home/INSTINCTOOLS/oxy/vadim/trial-task/src/containers/App/App.js">
+      <file name="App.js" path="/home/INSTINCTOOLS/oxy/vadim/sdsgfs/graphql-test-task/public/src/containers/App/App.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="7" count="1" type="stmt"/>
+        <line num="6" count="1" type="stmt"/>
+      </file>
+    </package>
+    <package name="containers.Employees">
+      <metrics statements="49" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="25" coveredmethods="0"/>
+      <file name="Employees.js" path="/home/INSTINCTOOLS/oxy/vadim/sdsgfs/graphql-test-task/public/src/containers/Employees/Employees.js">
+        <metrics statements="49" coveredstatements="0" conditionals="6" coveredconditionals="0" methods="25" coveredmethods="0"/>
+        <line num="12" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="stmt"/>
+        <line num="34" count="0" type="stmt"/>
+        <line num="35" count="0" type="stmt"/>
+        <line num="36" count="0" type="stmt"/>
+        <line num="37" count="0" type="stmt"/>
+        <line num="38" count="0" type="stmt"/>
+        <line num="39" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="51" count="0" type="stmt"/>
+        <line num="58" count="0" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="76" count="0" type="stmt"/>
+        <line num="87" count="0" type="stmt"/>
+        <line num="89" count="0" type="stmt"/>
+        <line num="100" count="0" type="stmt"/>
+        <line num="102" count="0" type="stmt"/>
+        <line num="105" count="0" type="stmt"/>
+        <line num="111" count="0" type="stmt"/>
+        <line num="112" count="0" type="stmt"/>
+        <line num="114" count="0" type="stmt"/>
+        <line num="119" count="0" type="stmt"/>
+        <line num="125" count="0" type="stmt"/>
+        <line num="135" count="0" type="stmt"/>
+        <line num="136" count="0" type="stmt"/>
+        <line num="138" count="0" type="stmt"/>
+        <line num="142" count="0" type="stmt"/>
+        <line num="152" count="0" type="stmt"/>
+        <line num="153" count="0" type="stmt"/>
+        <line num="160" count="0" type="stmt"/>
+        <line num="176" count="0" type="stmt"/>
+        <line num="186" count="0" type="stmt"/>
+        <line num="187" count="0" type="stmt"/>
+        <line num="189" count="0" type="stmt"/>
+        <line num="193" count="0" type="stmt"/>
+        <line num="205" count="0" type="stmt"/>
+        <line num="211" count="0" type="stmt"/>
+        <line num="219" count="0" type="stmt"/>
+        <line num="221" count="0" type="stmt"/>
+        <line num="245" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="246" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="248" count="0" type="stmt"/>
+        <line num="263" count="0" type="stmt"/>
+        <line num="268" count="0" type="stmt"/>
+        <line num="287" count="0" type="stmt"/>
+        <line num="288" count="0" type="stmt"/>
       </file>
     </package>
     <package name="containers.NotFoundPage">
       <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="NotFoundPage.js" path="/home/INSTINCTOOLS/oxy/vadim/trial-task/src/containers/NotFoundPage/NotFoundPage.js">
+      <file name="NotFoundPage.js" path="/home/INSTINCTOOLS/oxy/vadim/sdsgfs/graphql-test-task/public/src/containers/NotFoundPage/NotFoundPage.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="7" count="1" type="stmt"/>
-      </file>
-    </package>
-    <package name="containers.Overview">
-      <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-      <file name="Overview.js" path="/home/INSTINCTOOLS/oxy/vadim/trial-task/src/containers/Overview/Overview.js">
-        <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="9" count="1" type="stmt"/>
+        <line num="8" count="1" type="stmt"/>
       </file>
     </package>
     <package name="services">
-      <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-      <file name="history.js" path="/home/INSTINCTOOLS/oxy/vadim/trial-task/src/services/history.js">
+      <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="gqlRequests.js" path="/home/INSTINCTOOLS/oxy/vadim/sdsgfs/graphql-test-task/public/src/services/gqlRequests.js">
+        <metrics statements="4" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <line num="3" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="68" count="0" type="stmt"/>
+      </file>
+      <file name="history.js" path="/home/INSTINCTOOLS/oxy/vadim/sdsgfs/graphql-test-task/public/src/services/history.js">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="3" count="0" type="stmt"/>
       </file>
-      <file name="routes.js" path="/home/INSTINCTOOLS/oxy/vadim/trial-task/src/services/routes.js">
+      <file name="routes.js" path="/home/INSTINCTOOLS/oxy/vadim/sdsgfs/graphql-test-task/public/src/services/routes.js">
         <metrics statements="2" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="6" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
