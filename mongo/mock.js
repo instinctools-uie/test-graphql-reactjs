@@ -4,18 +4,18 @@ function createMockData(Model) {
   Model.deleteMany({}, error => error && console.error(error));
   Model.create([
     {
-      firstName: 'firstName',
-      lastName: 'lastName',
-      dateOfBirth: 'dateOfBirth',
-      primaryLanguage: 'primaryLanguage',
-      languages: ['languages']
+      firstName: 'Patrick',
+      lastName: 'Smith',
+      dateOfBirth: '12.12.1990',
+      primaryLanguage: 'English',
+      languages: ['English, German']
     },
     {
-      firstName: 'firstName2',
-      lastName: 'lastName2',
-      dateOfBirth: 'dateOfBirth2',
-      primaryLanguage: 'primaryLanguage2',
-      languages: ['languages2']
+      firstName: 'John',
+      lastName: 'Smith',
+      dateOfBirth: '13.13.1980',
+      primaryLanguage: 'German',
+      languages: ['English, German']
     }
   ], error => error && console.error(error));
 }
