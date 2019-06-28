@@ -17,6 +17,6 @@ const ModelSchema = new Schema(
 
 const Employee = mongoose.model('Employee', ModelSchema);
 
-createMockData(Employee); // TODO: Remove after develop
+createMockData(Employee);
 
 module.exports = Employee;
