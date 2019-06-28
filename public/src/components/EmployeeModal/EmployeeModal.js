@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Dropdown, Input, Modal } from 'semantic-ui-react';
+import { Button, Dropdown, Input, Modal, Loader } from 'semantic-ui-react';
 import './EmployeeModal.css';
 
 export class EmployeeModal extends React.PureComponent {
@@ -22,11 +22,13 @@ export class EmployeeModal extends React.PureComponent {
   render() {
     const {
       props: {
-        showMenu,
-        onCloseMenu,
+        showModal,
+        onCloseModal,
         onChangeForm,
         onSubmitForm,
         headerText,
+        loading,
+        error,
         employee: { firstName, lastName, dateOfBirth, primaryLanguage, languagesOptions }
       }
     } = this;
@@ -37,7 +39,8 @@ export class EmployeeModal extends React.PureComponent {
     }));
 
     return (
-      <Modal className="employee-modal" open={showMenu} onClose={onCloseMenu}>
+      <Modal className="employee-modal" open={showModal} onClose={onCloseModal}>
+        <Loader active={loading} />
         <Modal.Header>{headerText}</Modal.Header>
         <div className="employee-modal-container">
           <form onSubmit={onSubmitForm}>
@@ -91,6 +94,7 @@ export class EmployeeModal extends React.PureComponent {
               Apply
             </Button>
           </form>
+          {error && <p>{error}</p>}
         </div>
       </Modal>
     );
@@ -98,8 +102,8 @@ export class EmployeeModal extends React.PureComponent {
 }
 
 EmployeeModal.propTypes = {
-  showMenu: PropTypes.bool,
-  onCloseMenu: PropTypes.func,
+  showModal: PropTypes.bool,
+  onCloseModal: PropTypes.func,
   onChangeForm: PropTypes.func,
   onSubmitForm: PropTypes.func,
   headerText: PropTypes.string,

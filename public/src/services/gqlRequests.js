@@ -13,8 +13,40 @@ export const getEmployees = gql`
   }
 `;
 
+export const createEmployee = gql`
+  mutation createEmployee(
+    $firstName: String!
+    $lastName: String!
+    $dateOfBirth: String!
+    $primaryLanguage: String!
+    $languages: [String]!
+  ) {
+    createEmployee(
+      firstName: $firstName
+      lastName: $lastName
+      dateOfBirth: $dateOfBirth
+      primaryLanguage: $primaryLanguage
+      languages: $languages
+    ) {
+      id
+      firstName
+      lastName
+      dateOfBirth
+      primaryLanguage
+      languages
+    }
+  }
+`;
+
 export const updateEmployee = gql`
-  mutation updateEmployee {
+  mutation updateEmployee(
+    $id: String!
+    $firstName: String!
+    $lastName: String!
+    $dateOfBirth: String!
+    $primaryLanguage: String!
+    $languages: [String]!
+  ) {
     updateEmployee(
       id: $id
       firstName: $firstName
@@ -23,6 +55,19 @@ export const updateEmployee = gql`
       primaryLanguage: $primaryLanguage
       languages: $languages
     ) {
+      id
+      firstName
+      lastName
+      dateOfBirth
+      primaryLanguage
+      languages
+    }
+  }
+`;
+
+export const removeEmployee = gql`
+  mutation removeEmployee($id: String!) {
+    removeEmployee(id: $id) {
       id
       firstName
       lastName

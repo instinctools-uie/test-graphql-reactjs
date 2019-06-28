@@ -11,3 +11,8 @@
   transform: scale(1.2);
   will-change: transform;
 }
+
+.employees-page-create-button.ui.button {
+  display: block;
+  margin: 0 auto;
+}

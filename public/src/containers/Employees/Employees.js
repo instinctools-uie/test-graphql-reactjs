@@ -1,9 +1,9 @@
 import React from 'react';
-import { Table, Dropdown, Loader, Icon, Modal, Input, Button } from 'semantic-ui-react';
-import { Query, Mutation } from 'react-apollo';
+import { Query, graphql, compose } from 'react-apollo';
+import { Confirm, Table, Dropdown, Loader, Icon, Button } from 'semantic-ui-react';
 
 import { EmployeeModal } from '../../components';
-import { getEmployees, updateEmployee } from '../../services/gqlRequests';
+import { getEmployees, createEmployee, updateEmployee, removeEmployee } from '../../services/gqlRequests';
 
 import './Employees.css';
 
@@ -12,33 +12,69 @@ export class Employees extends React.Component {
     super(props);
 
     this.state = {
-      showEditMenu: false,
+      isCreateEmployee: false,
+      showModal: false,
+      showConfirmModal: false,
+      loading: true,
+      error: null,
       employee: {
         id: '',
         firstName: '',
         lastName: '',
         dateOfBirth: '',
         primaryLanguage: '',
-        languages: [],
-        languagesOptions: []
+        languages: ['English', 'German'],
+        languagesOptions: ['English', 'German']
       }
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleCloseMenu = this.handleCloseMenu.bind(this);
+    this.onClickCreateButton = this.onClickCreateButton.bind(this);
+    this.handleConfirmModal = this.handleConfirmModal.bind(this);
+    this.handleCreateEmployee = this.handleCreateEmployee.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleCloseConfirmModal = this.handleCloseConfirmModal.bind(this);
     this.handleClickEditIcon = this.handleClickEditIcon.bind(this);
-    this.handleSubmitForm = this.handleSubmitForm.bind(this);
+    this.handleClickRemoveIcon = this.handleClickRemoveIcon.bind(this);
+    this.handleEditEmployee = this.handleEditEmployee.bind(this);
   }
 
-  handleCloseMenu() {
+  handleCloseModal() {
     this.setState({
-      showEditMenu: null
+      showModal: false,
+      isCreateEmployee: false,
+      error: null
+    });
+  }
+
+  handleCloseConfirmModal() {
+    this.setState({
+      showConfirmModal: false,
+      error: null
+    });
+  }
+
+  onClickCreateButton() {
+    this.setState({
+      showModal: true,
+      isCreateEmployee: true
     });
   }
 
   handleClickEditIcon(employee) {
     this.setState({
-      showEditMenu: true,
+      showModal: true,
+      employee: {
+        ...this.state.employee,
+        ...employee,
+        languagesOptions: employee.languages
+      }
+    });
+  }
+
+  handleClickRemoveIcon(employee) {
+    this.setState({
+      showConfirmModal: true,
       employee: {
         ...this.state.employee,
         ...employee,
@@ -58,25 +94,144 @@ export class Employees extends React.Component {
     });
   }
 
-  handleSubmitForm(event) {
-    const { employee } = this.state;
+  handleConfirmModal() {
+    const {
+      employee: { id }
+    } = this.state;
+
+    this.setState({
+      loading: true
+    });
+    this.props
+      .removeEmployee({
+        variables: {
+          id
+        },
+        update: cache => {
+          const { employees } = cache.readQuery({ query: getEmployees });
+          cache.writeQuery({
+            query: getEmployees,
+            data: { employees: employees.filter(employee => employee.id !== id) }
+          });
+        }
+      })
+      .then(() => {
+        this.setState({
+          loading: false,
+          showConfirmModal: false
+        });
+      })
+      .catch(() => {
+        this.setState({
+          loading: false,
+          error: 'Some error'
+        });
+      });
+  }
+
+  handleCreateEmployee(event) {
+    const {
+      employee: { firstName, lastName, dateOfBirth, primaryLanguage, languages }
+    } = this.state;
     event.preventDefault();
-    console.log('employee', employee);
+
+    this.setState({
+      loading: true
+    });
+
+    this.props
+      .createEmployee({
+        variables: {
+          firstName,
+          lastName,
+          dateOfBirth,
+          primaryLanguage,
+          languages
+        },
+        update: (cache, { data: { createEmployee } }) => {
+          const { employees } = cache.readQuery({ query: getEmployees });
+          cache.writeQuery({
+            query: getEmployees,
+            data: { employees: employees.concat([createEmployee]) }
+          });
+        }
+      })
+      .then(() => {
+        this.setState({
+          loading: false,
+          showModal: false,
+          isCreateEmployee: false,
+          employee: {
+            id: '',
+            firstName: '',
+            lastName: '',
+            dateOfBirth: '',
+            primaryLanguage: '',
+            languages: ['English', 'German'],
+            languagesOptions: ['English', 'German']
+          }
+        });
+      })
+      .catch(() => {
+        this.setState({
+          loading: false,
+          error: 'Some error'
+        });
+      });
+  }
+
+  handleEditEmployee(event) {
+    const {
+      employee: { id, firstName, lastName, dateOfBirth, primaryLanguage, languages }
+    } = this.state;
+    event.preventDefault();
+
+    this.setState({
+      loading: true
+    });
+
+    this.props
+      .updateEmployee({
+        variables: {
+          id,
+          firstName,
+          lastName,
+          dateOfBirth,
+          primaryLanguage,
+          languages
+        }
+      })
+      .then(() => {
+        this.setState({
+          loading: false,
+          showModal: false
+        });
+      })
+      .catch(() => {
+        this.setState({
+          loading: false,
+          error: 'Some error'
+        });
+      });
   }
 
   render() {
-    const { employee, showEditMenu } = this.state;
+    const { employee, isCreateEmployee, showModal, showConfirmModal, loading, error } = this.state;
 
     return (
-      <section className="employees-page">
+      <div className="employees-page">
+        <Button className="employees-page-create-button" onClick={this.onClickCreateButton}>Create</Button>
         <EmployeeModal
-          showMenu={showEditMenu}
+          showModal={showModal}
           headerText="Edit employee"
           employee={employee}
+          loading={loading}
+          error={error}
           onChangeForm={this.handleChange}
-          onSubmitForm={this.handleSubmitForm}
-          onCloseMenu={this.handleCloseMenu}
+          onSubmitForm={isCreateEmployee ? this.handleCreateEmployee : this.handleEditEmployee}
+          onCloseModal={this.handleCloseModal}
         />
+        <Confirm open={showConfirmModal} header={'Are you sure?'} content={error} onCancel={this.handleCloseConfirmModal} onConfirm={this.handleConfirmModal} />
         <Query query={getEmployees}>
           {({ loading, error, data }) => {
             if (loading) return <Loader active />;
@@ -122,7 +277,7 @@ export class Employees extends React.Component {
                         </Table.Cell>
                         <Table.Cell>
                           <Icon onClick={() => this.handleClickEditIcon(employee)} name="edit"></Icon>
-                          <Icon name="remove"></Icon>
+                          <Icon onClick={() => this.handleClickRemoveIcon(employee)} name="remove"></Icon>
                         </Table.Cell>
                       </Table.Row>
                     );
@@ -132,9 +287,13 @@ export class Employees extends React.Component {
             );
           }}
         </Query>
-      </section>
+      </div>
     );
   }
 }
 
-export default Employees;
+export default compose(
+  graphql(updateEmployee, { name: 'updateEmployee' }),
+  graphql(removeEmployee, { name: 'removeEmployee' }),
+  graphql(createEmployee, { name: 'createEmployee' })
+)(Employees);
