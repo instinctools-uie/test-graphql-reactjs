@@ -36,8 +36,8 @@ export class Employees extends React.Component {
     this.handleCreateEmployee = this.handleCreateEmployee.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCloseConfirmModal = this.handleCloseConfirmModal.bind(this);
-    this.handleClickEditIcon = this.handleClickEditIcon.bind(this);
-    this.handleClickRemoveIcon = this.handleClickRemoveIcon.bind(this);
+    this.onClickEditIcon = this.onClickEditIcon.bind(this);
+    this.onClickRemoveIcon = this.onClickRemoveIcon.bind(this);
     this.handleEditEmployee = this.handleEditEmployee.bind(this);
   }
 
@@ -63,7 +63,7 @@ export class Employees extends React.Component {
     });
   }
 
-  handleClickEditIcon(employee) {
+  onClickEditIcon(employee) {
     this.setState({
       showModal: true,
       employee: {
@@ -74,7 +74,7 @@ export class Employees extends React.Component {
     });
   }
 
-  handleClickRemoveIcon(employee) {
+  onClickRemoveIcon(employee) {
     this.setState({
       showConfirmModal: true,
       employee: {
@@ -279,8 +279,8 @@ export class Employees extends React.Component {
                           />
                         </Table.Cell>
                         <Table.Cell>
-                          <Icon onClick={() => this.handleClickEditIcon(employee)} name="edit"></Icon>
-                          <Icon onClick={() => this.handleClickRemoveIcon(employee)} name="remove"></Icon>
+                          <Icon onClick={() => this.onClickEditIcon(employee)} name="edit"></Icon>
+                          <Icon onClick={() => this.onClickRemoveIcon(employee)} name="remove"></Icon>
                         </Table.Cell>
                       </Table.Row>
                     );
