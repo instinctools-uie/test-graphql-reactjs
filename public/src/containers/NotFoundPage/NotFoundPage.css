@@ -1,0 +1,8 @@
+.not-found-page {
+  display: flex;
+  justify-content: center;
+}
+
+.not-found-page > h1.ui.header:first-child {
+  margin-top: 15em;
+}
