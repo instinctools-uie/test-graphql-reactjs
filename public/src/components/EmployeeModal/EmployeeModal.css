@@ -30,7 +30,7 @@
 }
 
 .employee-modal.ui .ui.loader.active::before {
-  border-color: rgba(0,0,0,.85);
+  border-color: rgba(0, 0, 0, 0.85);
 }
 
 .employee-modal.ui .ui.loader.active::after {

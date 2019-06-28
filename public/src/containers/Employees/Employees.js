@@ -107,17 +107,17 @@ export class Employees extends React.Component {
 
     try {
       await this.props.removeEmployee({
-          variables: {
-            id
-          },
-          update: cache => {
-            const { employees } = cache.readQuery({ query: getEmployees });
-            cache.writeQuery({
-              query: getEmployees,
-              data: { employees: employees.filter(employee => employee.id !== id) }
-            });
-          }
-        });
+        variables: {
+          id
+        },
+        update: cache => {
+          const { employees } = cache.readQuery({ query: getEmployees });
+          cache.writeQuery({
+            query: getEmployees,
+            data: { employees: employees.filter(employee => employee.id !== id) }
+          });
+        }
+      });
 
       this.setState({
         loading: false,
@@ -219,7 +219,7 @@ export class Employees extends React.Component {
         </Button>
         <EmployeeModal
           showModal={showModal}
-          headerText={isCreateEmployee ? "Create employee" : "Edit employee"}
+          headerText={isCreateEmployee ? 'Create employee' : 'Edit employee'}
           employee={employee}
           loading={loading}
           error={error}

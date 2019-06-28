@@ -19,7 +19,11 @@ describe('<App /> Component', () => {
   });
 
   it(`should contain expected children`, () => {
-    const component = shallow(<App><h1>Header text</h1></App>);
+    const component = shallow(
+      <App>
+        <h1>Header text</h1>
+      </App>
+    );
 
     expect(component.find('h1')).toHaveLength(1);
     expect(component.find('h1').text()).toBe('Header text');
