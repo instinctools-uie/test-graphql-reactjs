@@ -16,3 +16,8 @@
   display: block;
   margin: 0 auto;
 }
+
+.employees-page-confirm-modal .content {
+  color: darkred;
+  text-align: center;
+}

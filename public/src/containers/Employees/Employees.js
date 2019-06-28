@@ -7,6 +7,16 @@ import { getEmployees, createEmployee, updateEmployee, removeEmployee } from '..
 
 import './Employees.css';
 
+const defaultEmployee = {
+  id: '',
+  firstName: '',
+  lastName: '',
+  dateOfBirth: '',
+  primaryLanguage: '',
+  languages: ['English', 'German'],
+  languagesOptions: ['English', 'German']
+};
+
 export class Employees extends React.Component {
   constructor(props) {
     super(props);
@@ -15,22 +25,14 @@ export class Employees extends React.Component {
       isCreateEmployee: false,
       showModal: false,
       showConfirmModal: false,
-      loading: true,
+      loading: false,
       error: null,
-      employee: {
-        id: '',
-        firstName: '',
-        lastName: '',
-        dateOfBirth: '',
-        primaryLanguage: '',
-        languages: ['English', 'German'],
-        languagesOptions: ['English', 'German']
-      }
+      employee: defaultEmployee
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.onClickCreateButton = this.onClickCreateButton.bind(this);
-    this.handleConfirmModal = this.handleConfirmModal.bind(this);
+    this.handleRemoveEmployee = this.handleRemoveEmployee.bind(this);
     this.handleCreateEmployee = this.handleCreateEmployee.bind(this);
     this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleCloseConfirmModal = this.handleCloseConfirmModal.bind(this);
@@ -94,7 +96,7 @@ export class Employees extends React.Component {
     });
   }
 
-  handleConfirmModal() {
+  async handleRemoveEmployee() {
     const {
       employee: { id }
     } = this.state;
@@ -102,34 +104,35 @@ export class Employees extends React.Component {
     this.setState({
       loading: true
     });
-    this.props
-      .removeEmployee({
-        variables: {
-          id
-        },
-        update: cache => {
-          const { employees } = cache.readQuery({ query: getEmployees });
-          cache.writeQuery({
-            query: getEmployees,
-            data: { employees: employees.filter(employee => employee.id !== id) }
-          });
-        }
-      })
-      .then(() => {
-        this.setState({
-          loading: false,
-          showConfirmModal: false
+
+    try {
+      await this.props.removeEmployee({
+          variables: {
+            id
+          },
+          update: cache => {
+            const { employees } = cache.readQuery({ query: getEmployees });
+            cache.writeQuery({
+              query: getEmployees,
+              data: { employees: employees.filter(employee => employee.id !== id) }
+            });
+          }
         });
-      })
-      .catch(() => {
-        this.setState({
-          loading: false,
-          error: 'Some error'
-        });
+
+      this.setState({
+        loading: false,
+        showConfirmModal: false,
+        employee: defaultEmployee
       });
+    } catch (e) {
+      this.setState({
+        loading: false,
+        error: 'Remove employee failed'
+      });
+    }
   }
 
-  handleCreateEmployee(event) {
+  async handleCreateEmployee(event) {
     const {
       employee: { firstName, lastName, dateOfBirth, primaryLanguage, languages }
     } = this.state;
@@ -139,8 +142,8 @@ export class Employees extends React.Component {
       loading: true
     });
 
-    this.props
-      .createEmployee({
+    try {
+      await this.props.createEmployee({
         variables: {
           firstName,
           lastName,
@@ -155,32 +158,23 @@ export class Employees extends React.Component {
             data: { employees: employees.concat([createEmployee]) }
           });
         }
-      })
-      .then(() => {
-        this.setState({
-          loading: false,
-          showModal: false,
-          isCreateEmployee: false,
-          employee: {
-            id: '',
-            firstName: '',
-            lastName: '',
-            dateOfBirth: '',
-            primaryLanguage: '',
-            languages: ['English', 'German'],
-            languagesOptions: ['English', 'German']
-          }
-        });
-      })
-      .catch(() => {
-        this.setState({
-          loading: false,
-          error: 'Some error'
-        });
       });
+
+      this.setState({
+        loading: false,
+        showModal: false,
+        isCreateEmployee: false,
+        employee: defaultEmployee
+      });
+    } catch (e) {
+      this.setState({
+        loading: false,
+        error: 'Create employee failed'
+      });
+    }
   }
 
-  handleEditEmployee(event) {
+  async handleEditEmployee(event) {
     const {
       employee: { id, firstName, lastName, dateOfBirth, primaryLanguage, languages }
     } = this.state;
@@ -190,8 +184,8 @@ export class Employees extends React.Component {
       loading: true
     });
 
-    this.props
-      .updateEmployee({
+    try {
+      await this.props.updateEmployee({
         variables: {
           id,
           firstName,
@@ -200,19 +194,19 @@ export class Employees extends React.Component {
           primaryLanguage,
           languages
         }
-      })
-      .then(() => {
-        this.setState({
-          loading: false,
-          showModal: false
-        });
-      })
-      .catch(() => {
-        this.setState({
-          loading: false,
-          error: 'Some error'
-        });
       });
+
+      this.setState({
+        loading: false,
+        showModal: false,
+        employee: defaultEmployee
+      });
+    } catch (e) {
+      this.setState({
+        loading: false,
+        error: 'Edit employee failed'
+      });
+    }
   }
 
   render() {
@@ -225,7 +219,7 @@ export class Employees extends React.Component {
         </Button>
         <EmployeeModal
           showModal={showModal}
-          headerText="Edit employee"
+          headerText={isCreateEmployee ? "Create employee" : "Edit employee"}
           employee={employee}
           loading={loading}
           error={error}
@@ -234,15 +228,16 @@ export class Employees extends React.Component {
           onCloseModal={this.handleCloseModal}
         />
         <Confirm
+          className="employees-page-confirm-modal"
           open={showConfirmModal}
           header={'Are you sure?'}
           content={error}
           onCancel={this.handleCloseConfirmModal}
-          onConfirm={this.handleConfirmModal}
+          onConfirm={this.handleRemoveEmployee}
         />
         <Query query={getEmployees}>
           {({ loading, error, data }) => {
-            if (loading) return <Loader active />;
+            if (loading) return <Loader active={loading} />;
             if (error) return <p>Error :(</p>;
 
             return (
