@@ -59,7 +59,8 @@ export class Employees extends React.Component {
   onClickCreateButton() {
     this.setState({
       showModal: true,
-      isCreateEmployee: true
+      isCreateEmployee: true,
+      employee: defaultEmployee
     });
   }
 
