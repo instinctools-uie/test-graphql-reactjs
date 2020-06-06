@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "apollo-server": "2.6.7",
-    "apollo-server-express": "2.6.7",
+    "apollo-server-express": "2.14.2",
     "express": "4.17.1",
     "graphql": "14.4.0",
     "method-override": "3.0.0",
